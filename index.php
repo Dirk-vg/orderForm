@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+
 //we are going to use session variables so we need to enable sessions
 session_start();
 
@@ -62,28 +63,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $streetErr = "Street name is required";
     } else {
         $street = test_input($_POST["street"]);
-        $_SESSION["street"] = $street;
+
+        // check if street only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/",$street)) {
+            $streetErr = "Only letters and white space allowed";
+        }
     }
 
     if (empty($_POST["streetNumber"])) {
         $streetNumberErr = "Streetnumber is required";
     } else {
         $streetNumber = test_input($_POST["streetnumber"]);
-        $_SESSION["streetNumber"] = $streetNumber;
+
+        // check if streetNumber only contains letters and whitespace
+        if (!preg_match("/^[0-9]*$/",$streetNumber)) {
+            $streetNumberErr = "Only letters and white space allowed";
+        }
+        ;
     }
 
     if (empty($_POST["city"])) {
         $cityErr = "city is required";
     } else {
         $city = test_input($_POST["city"]);
-        $_SESSION["city"] = $city;
+
+        // check if city only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/",$city)) {
+            $city = "Only letters and white space allowed";
+        }
+
     }
 
     if (empty($_POST["zipcode"])) {
         $cityErr = "zipcode is required";
     } else {
         $city = test_input($_POST["city"]);
-        $_SESSION["zipcode"] = $zipcode;
+
+        // check if zipcode only contains letters and whitespace
+        if (!preg_match("/^[0-9]*$/",$zipcode)) {
+            $zipcodeErr = "Only numbers allowed";
+        }
+
     }
 }
 
@@ -99,6 +119,8 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+
 $totalValue = 0;
 
 require 'formView.php';
