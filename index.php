@@ -5,20 +5,64 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+class Product
+{
+    private $name;
+    private $price;
+
+    public function __construct($name, $price)
+    {
+        $this->name = $name;
+        $this->price = $price;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+}
+//VARS
+//$email = null;
+//$street = null;
+//$streetNumber = null;
+//$city = null;
+//$zipCode = null;
+//$errorArray = [
+  //  'email' => null,
+    //'street' => null,
+    //'streetNumber' => null,
+    //'city' => null,
+    //'zipCode' => null,
+//];
 
 //we are going to use session variables so we need to enable sessions
 session_start();
+//input($_SERVER["REQUEST_METHOD"]);
 
-function whatIsHappening() {
-    echo '<h2>$_GET</h2>';
-    var_dump($_GET);
-    echo '<h2>$_POST</h2>';
-    var_dump($_POST);
-    echo '<h2>$_COOKIE</h2>';
-    var_dump($_COOKIE);
-    echo '<h2>$_SESSION</h2>';
-    var_dump($_SESSION);
-}
+//function input($param) {
+    //if ($param == "POST") {
+       // if (empty($_POST["email"])) {
+
+        //}
+    //}
+//}
+
 
 //your products with their price.
 $products = [
@@ -63,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $streetErr = "Street name is required";
     } else {
         $street = test_input($_POST["street"]);
+        $_SESSION["street"] = $street;
 
         // check if street only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/",$street)) {
@@ -74,6 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $streetNumberErr = "Street number is required";
     } else {
         $streetNumber = test_input($_POST["streetNumber"]);
+        $_SESSION["streetNumber"] = $streetNumber;
 
         // check if streetNumber only contains letters and whitespace
         if (!preg_match("/^[0-9]*$/",$streetNumber)) {
@@ -86,6 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $cityErr = "city is required";
     } else {
         $city = test_input($_POST["city"]);
+        $_SESSION["city"] = $city;
 
         // check if city only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/",$city)) {
@@ -98,6 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zipcodeErr = "zipcode is required";
     } else {
         $zipcode = test_input($_POST["zipcode"]);
+        $_SESSION["zipcode"] = $zipcode;
 
         // check if zipcode only contains letters and whitespace
         if (!preg_match("/^[0-9]*$/",$zipcode)) {
@@ -122,5 +170,7 @@ function test_input($data) {
 
 
 $totalValue = 0;
+
+
 
 require 'formView.php';

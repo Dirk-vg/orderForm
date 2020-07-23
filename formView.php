@@ -23,6 +23,7 @@
         </ul>
     </nav>
 
+    <P>* REQUIRED FIELDS</P>
     <form method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -47,21 +48,28 @@
                     <label for="street">Street:</label>
                     <input type="text" name="street" id="street" class="form-control" value="
                         <?php
+                    if (isset($_SESSION["street"])) {
+                        echo $_SESSION["street"];
+                    } else {
                     if(isset($street)){
                         echo $street;
-                    }else{
+                    }else {
                         echo "";
-                    }?>"/>
+                    }}?>"/>
                     <span class="error">* <?php echo $streetErr;?></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetNumber">Street number:</label>
                     <input type="text" id="streetNumber" name="streetNumber" class="form-control" value ="
-                    <?php
-                    if(isset($streetNumber)){
-                        echo $streetNumber;
-                    } else{ echo "";}
-                    ?>">
+                     <?php
+                    if (isset($_SESSION["streetNumber"])) {
+                        echo $_SESSION["streetNumber"];
+                    } else {
+                        if(isset($streetNumber)){
+                            echo $streetNumber;
+                        }else {
+                            echo "";
+                        }}?>"/>
                     <span class="error">* <?php echo $streetNumberErr;?></span>
 
                 </div>
@@ -71,15 +79,28 @@
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" class="form-control" value="
                     <?php
-                    if(isset($city)){
-                        echo $city;
-                    } else { echo "";}
-                    ?>">
+                    if (isset($_SESSION["CITY"])) {
+                        echo $_SESSION["city"];
+                    } else {
+                        if(isset($city)){
+                            echo $city;
+                        }else {
+                            echo "";
+                        }}?>"/>
                     <span class="error">* <?php echo $cityErr;?></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="
+                      <?php
+                    if (isset($_SESSION["zipcode"])) {
+                        echo $_SESSION["zipcode"];
+                    } else {
+                        if(isset($zipcode)){
+                            echo $zipcode;
+                        }else {
+                            echo "";
+                        }}?>"/>
                     <span class="error">* <?php echo $zipcodeErr;?></span>
                 </div>
             </div>
