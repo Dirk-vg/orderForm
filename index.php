@@ -71,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["streetNumber"])) {
-        $streetNumberErr = "Streetnumber is required";
+        $streetNumberErr = "Street number is required";
     } else {
-        $streetNumber = test_input($_POST["streetnumber"]);
+        $streetNumber = test_input($_POST["streetNumber"]);
 
         // check if streetNumber only contains letters and whitespace
         if (!preg_match("/^[0-9]*$/",$streetNumber)) {
@@ -95,9 +95,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($_POST["zipcode"])) {
-        $cityErr = "zipcode is required";
+        $zipcodeErr = "zipcode is required";
     } else {
-        $city = test_input($_POST["city"]);
+        $zipcode = test_input($_POST["zipcode"]);
 
         // check if zipcode only contains letters and whitespace
         if (!preg_match("/^[0-9]*$/",$zipcode)) {
